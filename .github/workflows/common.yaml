@@ -32,4 +32,4 @@ jobs:
       run: echo "version=$(jq -r '.version' package.json)" >> "$GITHUB_OUTPUT"
     
     - name:  print app version
-      run : echo ${{ steps.package_version.outputs.version }}
+      run : echo ${{ steps.package-version.outputs.version }}
