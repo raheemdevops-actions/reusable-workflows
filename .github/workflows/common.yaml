@@ -16,7 +16,7 @@ jobs:
   ci:
     runs-on: self-hosted
     outputs:
-      app_version: ${{ steps.package_version.outputs.version }}
+      app_version: ${{ steps.package-version.outputs.version }}
     steps:
     - name: checkout
       uses : actions/checkout@v5
