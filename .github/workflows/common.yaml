@@ -39,3 +39,11 @@ jobs:
 
     - name: docker build
       run: docker build -t 989088456804.dkr.ecr.us-east-1.amazonaws.com/roboshop/${{ inputs.component }}:${{ steps.package-version.outputs.version }} .
+
+    - name: Configure AWS Credentials 
+      uses: aws-actions/configure-aws-credentials@v6.0.0
+      with:
+        aws-region: us-east-1
+        aws-access-key-id: ${{ steps.creds.outputs.aws-access-key-id }}
+        aws-secret-access-key: ${{ steps.creds.outputs.aws-secret-access-key }}
+        aws-session-token: ${{ steps.creds.outputs.aws-session-token }}
