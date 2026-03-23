@@ -20,7 +20,7 @@ jobs:
   ci:
     runs-on: self-hosted
     outputs:
-      app_version: ${{ steps.package-version.outputs.version }}
+      appVersion: ${{ steps.package-version.outputs.version }}
     steps:
     - name: checkout
       uses : actions/checkout@v5
@@ -57,3 +57,21 @@ jobs:
 
 
         docker push 989088456804.dkr.ecr.us-east-1.amazonaws.com/roboshop/catalogue:${{ steps.package-version.outputs.version }}
+
+
+
+
+
+  cd:
+    runs-on: self-hosted
+    needs: ci
+    env:
+      appVersion: ${{ needs.ci.outputs.appVersion }}
+    steps:
+      - name: checkout deploy repo
+        uses: actions/checkout@v6
+        with:
+          repository: raheemdevops-actions/catalogue-deploy
+      - name: check files
+        run: ls -l
+          
