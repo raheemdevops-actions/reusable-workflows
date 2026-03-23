@@ -11,7 +11,11 @@ on:
       app-type:
         required: true
         type: string
-
+    secrets:
+      AWS_ACCESS_KEY_ID:
+        required: true
+      AWS_SECRET_ACCESS_KEY: 
+        required: true
 jobs:
   ci:
     runs-on: self-hosted
@@ -44,6 +48,6 @@ jobs:
       uses: aws-actions/configure-aws-credentials@v6.0.0
       with:
         aws-region: us-east-1
-        aws-access-key-id: ${{ steps.creds.outputs.aws-access-key-id }}
-        aws-secret-access-key: ${{ steps.creds.outputs.aws-secret-access-key }}
-        aws-session-token: ${{ steps.creds.outputs.aws-session-token }}
+        aws-access-key-id: ${{ steps.creds.outputs.AWS_ACCESS_KEY_ID }}
+        aws-secret-access-key: ${{ steps.creds.outputs.AWS_SECRET_ACCESS_KEY }}
+        
