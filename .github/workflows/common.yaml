@@ -50,4 +50,10 @@ jobs:
         aws-region: us-east-1
         aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
         aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-        
+
+    - name: push the image to ecr
+      run: |
+        aws ecr get-login-password --region us-east-1 | docker login --username AWS --password-stdin 989088456804.dkr.ecr.us-east-1.amazonaws.com
+
+
+        docker push 989088456804.dkr.ecr.us-east-1.amazonaws.com/roboshop/catalogue:${{ steps.package-version.outputs.version }}
